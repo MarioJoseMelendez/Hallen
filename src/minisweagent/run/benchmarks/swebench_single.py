@@ -46,12 +46,10 @@ def main(
     instance_spec: str = typer.Option(0, "-i", "--instance", help="SWE-Bench instance ID or index", rich_help_panel="Data selection"),
     model_name: str | None = typer.Option(None, "-m", "--model", help="Model to use", rich_help_panel="Basic"),
     model_class: str | None = typer.Option(None, "--model-class", help="Model class to use (e.g., 'anthropic' or 'minisweagent.models.anthropic.AnthropicModel')", rich_help_panel="Advanced"),
-    agent_class: str | None = typer.Option(None, "--agent-class", help="Agent class to use (e.g., 'interactive' or 'minisweagent.agents.interactive.InteractiveAgent')", rich_help_panel="Advanced"),
+    agent_class: str | None = typer.Option(None, "--agent-class", help="Agent class to use (e.g., 'default' or 'minisweagent.agents.default.DefaultAgent')", rich_help_panel="Advanced"),
     environment_class: str | None = typer.Option(None, "--environment-class", help="Environment class to use (e.g., 'docker' or 'minisweagent.environments.docker.DockerEnvironment')", rich_help_panel="Advanced"),
-    yolo: bool = typer.Option(False, "-y", "--yolo", help="Run without confirmation"),
     cost_limit: float | None = typer.Option(None, "-l", "--cost-limit", help="Cost limit. Set to 0 to disable."),
     config_spec: list[str] = typer.Option([str(DEFAULT_CONFIG_FILE)], "-c", "--config", help=_CONFIG_SPEC_HELP_TEXT, rich_help_panel="Basic"),
-    exit_immediately: bool = typer.Option(False, "--exit-immediately", help="Exit immediately when the agent wants to finish instead of prompting.", rich_help_panel="Advanced"),
     output: Path | None = typer.Option(DEFAULT_OUTPUT_FILE, "-o", "--output", help="Output trajectory file", rich_help_panel="Basic"),
 ) -> None:
     # fmt: on
@@ -71,9 +69,7 @@ def main(
     configs.append({
         "agent": {
             "agent_class": agent_class or UNSET,
-            "mode": "yolo" if yolo else UNSET,
             "cost_limit": cost_limit if cost_limit is not None else UNSET,
-            "confirm_exit": False if exit_immediately else UNSET,
             "output_path": output or UNSET,
         },
         "model": {
@@ -91,7 +87,7 @@ def main(
         get_model(config=config.get("model", {})),
         env,
         config.get("agent", {}),
-        default_type="interactive",
+        default_type="default",
     )
     agent.run(instance["problem_statement"])
 
