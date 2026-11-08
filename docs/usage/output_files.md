@@ -12,7 +12,7 @@
 
 !!! tip "Viewing trajectory files"
 
-    Use the [inspector](inspector.md) to browse trajectory files interactively.
+    Trajectory files are plain JSON, so any JSON viewer works.
 
 Trajectory files contain the full history of an agent run, including all messages, configuration, and metadata.
 

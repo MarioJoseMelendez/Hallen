@@ -2,7 +2,6 @@ import pytest
 
 from minisweagent.agents import get_agent, get_agent_class
 from minisweagent.agents.default import DefaultAgent
-from minisweagent.agents.interactive import InteractiveAgent
 from minisweagent.environments.local import LocalEnvironment
 from minisweagent.models.test_models import DeterministicModel
 
@@ -12,7 +11,6 @@ class TestGetAgentClass:
         ("spec", "expected"),
         [
             ("minisweagent.agents.default.DefaultAgent", DefaultAgent),
-            ("minisweagent.agents.interactive.InteractiveAgent", InteractiveAgent),
         ],
     )
     def test_full_path(self, spec, expected):
@@ -22,7 +20,6 @@ class TestGetAgentClass:
         ("spec", "expected"),
         [
             ("default", DefaultAgent),
-            ("interactive", InteractiveAgent),
         ],
     )
     def test_shorthand(self, spec, expected):
@@ -55,8 +52,8 @@ class TestGetAgent:
         assert isinstance(agent, DefaultAgent)
 
     def test_agent_class_in_config(self, model, env, base_config):
-        agent = get_agent(model, env, {**base_config, "agent_class": "interactive"}, default_type="default")
-        assert isinstance(agent, InteractiveAgent)
+        agent = get_agent(model, env, {**base_config, "agent_class": "default"}, default_type="default")
+        assert isinstance(agent, DefaultAgent)
 
     def test_config_passed_to_agent(self, model, env, base_config):
         agent = get_agent(model, env, {**base_config, "step_limit": 42}, default_type="default")

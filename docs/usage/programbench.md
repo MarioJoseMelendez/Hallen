@@ -2,7 +2,7 @@
 
 !!! abstract "Overview"
 
-    * `mini-extra programbench` runs the agent on all [ProgramBench](https://github.com/facebookresearch/programbench) task instances in batch mode.
+    * `python -m minisweagent.run.benchmarks.programbench` runs the agent on all [ProgramBench](https://github.com/facebookresearch/programbench) task instances in batch mode.
     * Output is directly compatible with `programbench eval`.
     * ProgramBench is a reverse-engineering benchmark: the agent is dropped into a container
       with a compiled binary and must produce a fresh source codebase that reproduces the
@@ -25,11 +25,11 @@
 !!! tip "Quickstart"
 
     ```bash
-    mini-extra programbench --help
+    python -m minisweagent.run.benchmarks.programbench --help
     # or
     python src/minisweagent/run/benchmarks/programbench.py --help
     # Example:
-    mini-extra programbench \
+    python -m minisweagent.run.benchmarks.programbench \
         --model anthropic/claude-sonnet-4-5-20250929 \
         --workers 4
     ```

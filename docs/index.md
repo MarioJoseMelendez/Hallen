@@ -31,7 +31,7 @@ We now ask: **What if our agent was 100x simpler, and still worked nearly as wel
 
 - **Widely adopted**: Used by Meta, NVIDIA, Essential AI, IBM, Nebius, Anyscale, Princeton University, Stanford University, and many more.
 - **Minimal**: Just [100 lines of python](https://github.com/SWE-agent/mini-swe-agent/blob/main/src/minisweagent/agents/default.py) (+100 total for [env](https://github.com/SWE-agent/mini-swe-agent/blob/main/src/minisweagent/environments/local.py),
-[model](https://github.com/SWE-agent/mini-swe-agent/blob/main/src/minisweagent/models/litellm_model.py), [script](https://github.com/SWE-agent/mini-swe-agent/blob/main/src/minisweagent/run/hello_world.py)) — no fancy dependencies!
+[model](https://github.com/SWE-agent/mini-swe-agent/blob/main/src/minisweagent/models/litellm_model.py)) — no fancy dependencies!
 - **Performant:** Scores >74% on the [SWE-bench verified benchmark](https://www.swebench.com/); starts much faster than Claude Code
 - **Deployable:** Supports **local environments**, **docker/podman**, **singularity/apptainer**, **bublewrap**, **contree**, and more
 - **Compatible:** Supports all models via **litellm**, **openrouter**, **portkey**, and more. Support for `/completion` and `/response` endpoints, interleaved thinking etc.
@@ -95,36 +95,11 @@ We now ask: **What if our agent was 100x simpler, and still worked nearly as wel
     What you get with both
 
     - Excellent performance on SWE-Bench
-    - A trajectory browser
 
 <table>
 <tr>
 <td width="50%">
-<a href="usage/mini"><strong>CLI</strong></a> (<code>mini</code>)
-</td>
-<td>
 <a href="usage/swebench/"><strong>Batch inference</strong></a>
-</td>
-</tr>
-<tr>
-<td width="50%">
-  <div class="gif-container" data-glightbox-disabled>
-    <img src="https://github.com/SWE-agent/swe-agent-media/blob/main/media/mini/png/mini.png?raw=true"
-         data-gif="https://github.com/SWE-agent/swe-agent-media/blob/main/media/mini/gif/mini.gif?raw=true"
-         alt="mini" data-glightbox="false" />
-  </div>
-</td>
-<td>
-<div class="gif-container" data-glightbox-disabled>
-  <img src="https://github.com/SWE-agent/swe-agent-media/blob/main/media/mini/png/swebench.png?raw=true"
-       data-gif="https://github.com/SWE-agent/swe-agent-media/blob/main/media/mini/gif/swebench.gif?raw=true"
-       alt="swebench" data-glightbox="false" />
-</div>
-</td>
-</tr>
-<tr>
-<td>
-<a href="usage/inspector/"><strong>Trajectory browser</strong></a>
 </td>
 <td>
 <a href="advanced/cookbook/"><strong>Python bindings</strong></a>
@@ -133,9 +108,9 @@ We now ask: **What if our agent was 100x simpler, and still worked nearly as wel
 <tr>
 <td>
 <div class="gif-container" data-glightbox-disabled>
-  <img src="https://github.com/SWE-agent/swe-agent-media/blob/main/media/mini/png/inspector.png?raw=true"
-       data-gif="https://github.com/SWE-agent/swe-agent-media/blob/main/media/mini/gif/inspector.gif?raw=true"
-       alt="inspector" data-glightbox="false" />
+  <img src="https://github.com/SWE-agent/swe-agent-media/blob/main/media/mini/png/swebench.png?raw=true"
+       data-gif="https://github.com/SWE-agent/swe-agent-media/blob/main/media/mini/gif/swebench.gif?raw=true"
+       alt="swebench" data-glightbox="false" />
 </div>
 </td>
 <td>
@@ -166,13 +141,13 @@ agent.run("Write a sudoku game")</code></pre>
     </div>
   </a>
 
-  <a href="usage/mini/" class="nav-card-link">
+  <a href="advanced/cookbook/" class="nav-card-link">
     <div class="nav-card">
       <div class="nav-card-header">
-        <span class="material-icons nav-card-icon">flash_on</span>
-        <span class="nav-card-title">Usage: Simple UI</span>
+        <span class="material-icons nav-card-icon">code</span>
+        <span class="nav-card-title">Python bindings</span>
       </div>
-      <p class="nav-card-description">Learn to use the <code>mini</code> command</p>
+      <p class="nav-card-description">Call the agent from your own code</p>
     </div>
   </a>
 

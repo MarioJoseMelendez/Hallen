@@ -7,12 +7,11 @@
 
 We support various environments for executing code through different backends.
 
-If you run the [`mini`](../usage/mini.md) CLI, you will run in the `local` environment by default.
+By default you run in the `local` environment.
 
 However, particularly for evaluating on SWE-bench, you want to run in isolated environments, so we offer multiple "backends" that you can use.
 
-You can specify the environment class with the `--environment-class` flag or the
-`environment.environment_class` key in the [agent config file](yaml_configuration.md).
+You can specify the environment class with the `environment.environment_class` key in the [agent config file](yaml_configuration.md).
 
 * **`local`** ([`LocalEnvironment`](../reference/environments/local.md)). Executes commands directly on the host machine using `subprocess.run`. No isolation. Directly works in your current python environment.
 

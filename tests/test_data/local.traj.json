@@ -9,7 +9,7 @@
   },
   {
     "role": "assistant",
-    "content": "Here be some dummy command:\n\n```mswea_bash_command\necho 'hello world'\n```"
+    "content": "Here be some dummy command:\n\n```mswea_bash_command\necho hello world\n```"
   },
   {
     "role": "user",

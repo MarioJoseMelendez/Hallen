@@ -3,8 +3,8 @@
 !!! abstract "Overview"
 
     * We provide two scripts to run on the [SWE-bench](https://www.swebench.com/) benchmark.
-    * `mini-extra swebench` runs on all task instances in batch mode.
-    * `mini-extra swebench-single` runs on a single task instance with interactivity (useful for debugging).
+    * `python -m minisweagent.run.benchmarks.swebench` runs on all task instances in batch mode.
+    * `python -m minisweagent.run.benchmarks.swebench-single` runs on a single task instance with interactivity (useful for debugging).
     * You can also take a look at the runscripts to figure out how to build your own batch processing pipeline.
 
 <figure markdown="span">
@@ -32,11 +32,11 @@
         Batch mode runs on all task instances in parallel.
 
         ```bash
-        mini-extra swebench --help
+        python -m minisweagent.run.benchmarks.swebench --help
         # or
         python src/minisweagent/run/benchmarks/swebench.py --help
         # Example:
-        mini-extra swebench \
+        python -m minisweagent.run.benchmarks.swebench \
             --model anthropic/claude-sonnet-4-5-20250929 \
             --subset verified \
             --split test \
@@ -68,17 +68,17 @@
         Single instance mode runs on a single task instance with interactivity. This is meant for debugging, and so unlike the batch mode command above, this will not produce a preds.json file.
 
         ```bash
-        mini-extra swebench-single --help
+        python -m minisweagent.run.benchmarks.swebench-single --help
         # or
         python src/minisweagent/run/benchmarks/swebench_single.py --help
         # Example:
-        mini-extra swebench-single \
+        python -m minisweagent.run.benchmarks.swebench-single \
             --subset verified \
             --split test \
             --model anthropic/claude-sonnet-4-5-20250929 \
             -i sympy__sympy-15599
         # or
-        mini-extra swebench-single \
+        python -m minisweagent.run.benchmarks.swebench-single \
             --subset verified \
             --split test \
             -m anthropic/claude-sonnet-4-5-20250929 \

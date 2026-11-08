@@ -1,6 +1,6 @@
 # Configs
 
-* `mini.yaml` - Default config for `mini`/`agents/interactive.py` agent.
+* `mini.yaml` - Default config for the `default.py` agent with toolcall models.
 * `default.yaml` - Default config for the `default.py` agent.
 
 ## Benchmarks

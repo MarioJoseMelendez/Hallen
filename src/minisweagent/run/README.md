@@ -1,10 +1,9 @@
-# Entry points / run scripts
+# Run scripts
 
-## Work locally (i.e., without a sandbox)
+Hallen is a library, so there is no human facing entry point. The scripts in this folder are benchmark runners that you invoke from your own code or with `python -m`.
 
-* `hello_world.py` - Extremely simple example of how to use the `default.py` agent.
-* `mini.py` - Uses the `interactive.py` agent.
+## Benchmarks
 
-## Extras
-
-* `extra/swebench.py` - Benchmark the performance of the `default.py` agent.
+* `benchmarks/swebench.py` - Batch evaluation on SWE-bench.
+* `benchmarks/swebench_single.py` - Evaluation on a single SWE-bench instance.
+* `benchmarks/programbench.py` - Batch evaluation on ProgramBench.

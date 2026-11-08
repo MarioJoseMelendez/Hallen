@@ -100,10 +100,10 @@ Flag the following style issue as minor:
 Use these component names in parentheses for `fix`, `feat`, `enh`, and `ref` commits:
 
 - `models` - Changes to model interfaces (litellm, anthropic, openai, portkey, openrouter)
-- `agents` - Changes to agent classes (default, interactive, multimodal)
+- `agents` - Changes to agent classes (default, multimodal)
 - `env` - Changes to environments (docker, local, singularity, bubblewrap, swerex)
 - `config` - Changes to configuration files or config handling
-- `run` - Changes to run scripts (mini, hello_world)
-- `benchmarks` - Changes to benchmark runners (swebench, inspector)
+- `run` - Changes to run scripts and entry points
+- `benchmarks` - Changes to benchmark runners (swebench, programbench)
 - `cli` - Changes to CLI argument handling
 - `deps` - Dependency updates

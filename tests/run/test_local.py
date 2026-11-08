@@ -1,8 +1,9 @@
 import re
-from unittest.mock import patch
 
+from minisweagent.agents import get_agent
+from minisweagent.config import builtin_config_dir, get_config_from_spec
+from minisweagent.environments.local import LocalEnvironment
 from minisweagent.models.test_models import DeterministicModel, make_output
-from minisweagent.run.mini import DEFAULT_CONFIG_FILE, main
 from tests.conftest import assert_observations_match
 
 
@@ -21,34 +22,19 @@ def _make_model_from_fixture(text_outputs: list[str], cost_per_call: float = 1.0
 
 
 def test_local_end_to_end(local_test_data):
-    """Test the complete flow from CLI to final result using real environment but deterministic model"""
+    """Test the complete flow from config to final result using a real environment but deterministic model"""
 
     model_responses = local_test_data["model_responses"]
     expected_observations = local_test_data["expected_observations"]
 
-    with (
-        patch("minisweagent.run.mini.configure_if_first_time"),
-        patch("minisweagent.models.litellm_model.LitellmModel") as mock_model_class,
-        patch("minisweagent.agents.utils.prompt_user.prompt_session.prompt", side_effect=lambda *a, **kw: ""),
-        patch(
-            "minisweagent.agents.utils.prompt_user._multiline_prompt_session.prompt", side_effect=lambda *a, **kw: ""
-        ),
-        patch("builtins.input", return_value=""),  # For LimitsExceeded handling
-    ):
-        mock_model_class.return_value = _make_model_from_fixture(model_responses)
-        agent = main(
-            model_name="tardis",
-            config_spec=[str(DEFAULT_CONFIG_FILE)],
-            yolo=True,
-            task="Blah blah blah",
-            output=None,
-            cost_limit=10,
-            model_class=None,
-            agent_class=None,
-            environment_class=None,
-        )  # type: ignore
+    agent = get_agent(
+        _make_model_from_fixture(model_responses),
+        LocalEnvironment(),
+        {**get_config_from_spec(builtin_config_dir / "mini.yaml")["agent"], "cost_limit": 10},
+        default_type="default",
+    )
+    agent.run("Blah blah blah")
 
-    assert agent is not None
     messages = agent.messages
 
     # Verify we have the right number of messages

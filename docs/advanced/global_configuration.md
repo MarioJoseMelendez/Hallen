@@ -13,38 +13,14 @@
 
 ## Setting global configuration
 
-All global configuration can be either set as environment variables, or in the `.env` file (the exact location is printed when you run `mini`).
+All global configuration can be either set as environment variables, or in the `.env` file inside the global config directory (`minisweagent.global_config_file`).
 Environment variables take precedence over variables set in the `.env` file.
 
-We provide several helper functions to update the global configuration.
-
-For example, to set the default model and API keys, you can run:
+To set the default model and API keys, edit the `.env` file:
 
 ```bash
-mini-extra config setup
-```
-
-or to update specific settings:
-
-```
-mini-extra config set KEY VALUE
-# e.g.,
-mini-extra config set MSWEA_MODEL_NAME "anthropic/claude-sonnet-4-5-20250929"
-mini-extra config set ANTHROPIC_API_KEY "sk-..."
-```
-
-or to unset a key:
-
-```bash
-mini-extra config unset KEY
-# e.g.,
-mini-extra config unset ANTHROPIC_API_KEY
-```
-
-You can also edit the `.env` file directly and we provide a helper function for that:
-
-```bash
-mini-extra config edit
+MSWEA_MODEL_NAME="anthropic/claude-sonnet-4-5-20250929"
+ANTHROPIC_API_KEY="sk-..."
 ```
 
 To set environment variables (recommended for temporary experimentation or API keys):
@@ -102,14 +78,6 @@ MSWEA_MODEL_RETRY_STOP_AFTER_ATTEMPT="10"
 # Set a custom directory for agent config files in addition to the builtin ones
 # This allows to specify them by names
 MSWEA_CONFIG_DIR="/path/to/your/own/config/dir"
-
-# Config path for mini run script
-# (default: package_dir / "config" / "mini.yaml")
-MSWEA_MINI_CONFIG_PATH="/path/to/your/own/config"
-
-# Custom style path for trajectory inspector
-# (default: package_dir / "config" / "inspector.tcss")
-MSWEA_INSPECTOR_STYLE_PATH="/path/to/your/inspector/style.tcss"
 ```
 
 ### Settings for environments
@@ -126,14 +94,6 @@ MSWEA_DOCKER_EXECUTABLE="docker"
 # Path/name to the bubblewrap executable
 # (default: "bwrap")
 MSWEA_BUBBLEWRAP_EXECUTABLE="bwrap"
-```
-
-## Default run files
-
-```bash
-# Default run script entry point for the main CLI
-# (default: "minisweagent.run.mini")
-MSWEA_DEFAULT_RUN="minisweagent.run.mini"
 ```
 
 {% include-markdown "_footer.md" %}
