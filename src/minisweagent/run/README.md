@@ -1,6 +1,10 @@
 # Run scripts
 
-Hallen is a library, so there is no human facing entry point. The scripts in this folder are benchmark runners that you invoke from your own code or with `python -m`.
+Hallen is a library, so there is no human facing entry point. The scripts in this folder are called from your own code or with `python -m`.
+
+## Agent
+
+* `prompt.py` - `run_prompt(prompt)` builds the model, environment and agent, runs one task and returns the result with a `success` flag.
 
 ## Benchmarks
 

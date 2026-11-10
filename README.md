@@ -35,17 +35,20 @@ Falen owns the task graph, the planning policy, the context budget and the evalu
 ## Quick start
 
 ```python
-from minisweagent.agents.default import DefaultAgent
-from minisweagent.environments.docker import DockerEnvironment
-from minisweagent.models.litellm_model import LitellmModel
+from minisweagent.run.prompt import run_prompt
 
-agent = DefaultAgent(
-    LitellmModel(model_name="anthropic/claude-sonnet-4-5-20250929"),
-    DockerEnvironment(image="python:3.13"),
+result = run_prompt(
+    "Fix the failing test in src/app.py",
+    model_name="anthropic/claude-sonnet-4-5-20250929",
     output_path="runs/task-1.traj.json",
 )
-result = agent.run(task)
+
+result["success"]  # True when the agent submitted its output
 ```
+
+`run_prompt` builds the model, the environment and the agent from the built in config, runs the loop and returns a dictionary. The `success` key is `True` only when the agent finished with `exit_status` equal to `Submitted`. Any other ending, such as a cost limit or a repeated format error, reports `False`. The same dictionary carries the exit status, the submission, the total cost, the number of model calls and the trajectory path.
+
+Pass `environment_class="docker"` or a config spec to change where commands run. You can also pass your own model and environment objects and skip the factories.
 
 ## What it does
 

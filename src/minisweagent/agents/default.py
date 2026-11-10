@@ -86,7 +86,11 @@ class DefaultAgent:
         )
 
     def run(self, task: str = "", **kwargs) -> dict:
-        """Run step() until agent is finished. Returns dictionary with exit_status, submission keys."""
+        """Run step() until agent is finished.
+
+        Returns a dictionary with the exit status, the submission and a
+        ``success`` flag that is True only when the agent submitted its output.
+        """
         self.extra_template_vars |= {"task": task, **kwargs}
         self.messages = []
         self.add_messages(
@@ -121,7 +125,8 @@ class DefaultAgent:
                 self.save(self.config.output_path)
             if self.messages[-1].get("role") == "exit":
                 break
-        return self.messages[-1].get("extra", {})
+        info = self.messages[-1].get("extra", {})
+        return {**info, "success": info.get("exit_status") == "Submitted"}
 
     def step(self) -> list[dict]:
         """Query the LM, execute actions."""

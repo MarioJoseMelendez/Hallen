@@ -34,14 +34,10 @@ class TestGetModelName:
     def test_raises_error_when_no_model_configured(self):
         """Test that ValueError is raised when no model is configured anywhere."""
         with patch.dict(os.environ, {}, clear=True):
-            with pytest.raises(
-                ValueError, match="No default model set. Please run `mini-extra config setup` to set one."
-            ):
+            with pytest.raises(ValueError, match="No model set"):
                 get_model_name(None, {})
 
-            with pytest.raises(
-                ValueError, match="No default model set. Please run `mini-extra config setup` to set one."
-            ):
+            with pytest.raises(ValueError, match="No model set"):
                 get_model_name(None, None)
 
 
