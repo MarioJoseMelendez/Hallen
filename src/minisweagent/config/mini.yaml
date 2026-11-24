@@ -148,3 +148,5 @@ model:
     {%- endif %}
   model_kwargs:
     drop_params: true
+    # The agent loop cannot advance without an action; weak models otherwise answer in prose.
+    tool_choice: required
