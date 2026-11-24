@@ -1,4 +1,4 @@
-"""Headless JSON entrypoint used by F002MM.
+"""Headless JSON entrypoint.
 
 Everything is explicit: task file, model, working directory, limits, output paths.
 Nothing is read from ambient configuration except provider credentials.
