@@ -73,7 +73,7 @@ def test_local_environment_custom_cwd():
 
         result = env.execute({"command": "pwd"})
         assert result["returncode"] == 0
-        assert temp_dir in result["output"]
+        assert Path(result["output"].strip()).resolve() == Path(temp_dir).resolve()
 
 
 def test_local_environment_cwd_parameter_override():
@@ -84,7 +84,7 @@ def test_local_environment_cwd_parameter_override():
         # Execute with different cwd parameter
         result = env.execute({"command": "pwd"}, cwd=temp_dir2)
         assert result["returncode"] == 0
-        assert temp_dir2 in result["output"]
+        assert Path(result["output"].strip()).resolve() == Path(temp_dir2).resolve()
 
 
 def test_local_environment_default_cwd():
@@ -94,7 +94,7 @@ def test_local_environment_default_cwd():
 
     result = env.execute({"command": "pwd"})
     assert result["returncode"] == 0
-    assert current_dir in result["output"]
+    assert Path(result["output"].strip()).resolve() == Path(current_dir).resolve()
 
 
 def test_local_environment_command_failure():

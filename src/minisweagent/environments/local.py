@@ -1,5 +1,6 @@
 import os
 import platform
+import shutil
 import signal
 import subprocess
 from typing import Any
@@ -71,9 +72,11 @@ class LocalEnvironment:
 
 def _run(command: str, cwd: str, env: dict[str, str], timeout: int) -> subprocess.CompletedProcess[str]:
     """Like subprocess.run, but kills the whole process group on timeout so no children are orphaned."""
+    # Windows defaults to cmd.exe, but the agent is told to write bash. Use bash when present.
+    bash = shutil.which("bash") if os.name == "nt" else None
     process = subprocess.Popen(
-        command,
-        shell=True,
+        [bash, "-c", command] if bash else command,
+        shell=not bash,
         text=True,
         cwd=cwd,
         env=env,
